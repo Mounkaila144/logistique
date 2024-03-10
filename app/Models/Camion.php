@@ -27,6 +27,9 @@ class Camion extends Model
 
     public function remboursementDepasse()
     {
+        if (is_null($this->date_remboursement)) {
+            return false;
+        }
 
         $tomorow = Carbon::today()->toDateString();
         return $this->date_remboursement <= $tomorow;

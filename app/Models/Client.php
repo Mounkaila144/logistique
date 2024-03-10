@@ -38,9 +38,13 @@ class Client extends Model
 
     public function remboursementDepasse()
     {
+        // Vérifie que la date de remboursement n'est pas null.
+        if (is_null($this->date_remboursement)) {
+            return false;
+        }
+            $tomorow = Carbon::today()->toDateString();
+            return $this->date_remboursement <= $tomorow;
 
-        $tomorow = Carbon::today()->toDateString();
-        return $this->date_remboursement <= $tomorow;
     }
     public function restant()
     {

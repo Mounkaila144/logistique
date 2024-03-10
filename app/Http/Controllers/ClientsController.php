@@ -87,7 +87,6 @@ class ClientsController extends Controller
             // Supprimez d'abord toutes les relations
             $client->payements()->delete();
             $client->articles()->delete();
-            $client->supplementaires()->delete();
 
             // Puis, supprimez le client lui-même
             $client->delete();
