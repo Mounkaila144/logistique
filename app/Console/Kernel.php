@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
             $adminUser = User::first(); // Obtenez le premier utilisateur
             if ($adminUser) {
                 foreach ($clients as $client) {
-                    if ($client->remboursementDepasse()) {
+                    if ($client->remboursementDepasse() && $client->restant() > 0) {
                         $sid    = env('TWILIO_SID');
                         $token  = env('TWILIO_TOKEN');
                         $twilio = new TwilioClient($sid, $token);
@@ -47,7 +47,7 @@ class Kernel extends ConsoleKernel
                     }
                 }
                 foreach ($camions as $camion) {
-                    if ($camion->remboursementDepasse()) {
+                    if ($camion->remboursementDepasse() && $camion->restant() > 0) {
                         $sid    = env('TWILIO_SID');
                         $token  = env('TWILIO_TOKEN');
                         $twilio = new TwilioClient($sid, $token);
