@@ -19,15 +19,8 @@ RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && \
 docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
 docker-php-ext-install gd
 
-
-
 # pcov
 RUN pecl install pcov && docker-php-ext-enable pcov
-
-# Xdebug
-# RUN pecl install xdebug \
-# && docker-php-ext-enable xdebug \
-# && echo ";zend_extension=xdebug" > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Node.js, NPM, Yarn
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
@@ -47,8 +40,10 @@ ENV PATH $PATH:/composer/vendor/bin
 RUN composer config --global process-timeout 3600
 RUN composer global require "laravel/installer"
 
-WORKDIR /root
-RUN git clone https://github.com/seebi/dircolors-solarized
+# Installer les dépendances du projet
+COPY . /var/www
+WORKDIR /var/www
+RUN composer install
 
 EXPOSE 5173
 WORKDIR /var/www
