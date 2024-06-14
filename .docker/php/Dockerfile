@@ -41,7 +41,8 @@ RUN composer config --global process-timeout 3600
 RUN composer global require "laravel/installer"
 
 # Copier seulement composer.json et composer.lock pour l'installation des dépendances
-COPY composer.json composer.lock /var/www/
+COPY composer.json /var/www/composer.json
+COPY composer.lock /var/www/composer.lock
 
 WORKDIR /var/www
 
