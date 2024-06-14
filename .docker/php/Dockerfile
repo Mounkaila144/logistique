@@ -1,5 +1,6 @@
 FROM php:8.3-fpm
 
+# Copier les fichiers de configuration dans l'image
 COPY .docker/php/php.ini /usr/local/etc/php/
 COPY .docker/php/docker.conf /usr/local/etc/php-fpm.d/docker.conf
 COPY .docker/php/.bashrc /root/
@@ -40,16 +41,12 @@ ENV PATH $PATH:/composer/vendor/bin
 RUN composer config --global process-timeout 3600
 RUN composer global require "laravel/installer"
 
-# Copier seulement composer.json et composer.lock pour l'installation des dépendances
-COPY composer.json /var/www/composer.json
-COPY composer.lock /var/www/composer.lock
+# Copier tous les fichiers du projet
+COPY . /var/www
 
 WORKDIR /var/www
 
 # Installer les dépendances du projet
 RUN composer install
-
-# Copier le reste des fichiers du projet
-COPY . /var/www
 
 EXPOSE 5173
