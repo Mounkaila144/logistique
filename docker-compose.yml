@@ -21,6 +21,7 @@ services:
             - .:/var/www
             - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - /etc/letsencrypt:/etc/letsencrypt  # Montez les certificats Let's Encrypt
         depends_on:
             - php
 
