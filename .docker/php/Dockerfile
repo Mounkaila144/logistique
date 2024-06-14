@@ -40,10 +40,15 @@ ENV PATH $PATH:/composer/vendor/bin
 RUN composer config --global process-timeout 3600
 RUN composer global require "laravel/installer"
 
-# Installer les dépendances du projet
-COPY . /var/www
+# Copier seulement composer.json et composer.lock pour l'installation des dépendances
+COPY composer.json composer.lock /var/www/
+
 WORKDIR /var/www
+
+# Installer les dépendances du projet
 RUN composer install
 
+# Copier le reste des fichiers du projet
+COPY . /var/www
+
 EXPOSE 5173
-WORKDIR /var/www
