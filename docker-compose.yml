@@ -2,9 +2,7 @@ version: '3.7'
 
 services:
     php:
-        build:
-            context: .docker/php  # Contexte de construction correct
-            dockerfile: .docker/php/Dockerfile
+        build: .docker/php
         ports:
             - 5173:5173
         volumes:
