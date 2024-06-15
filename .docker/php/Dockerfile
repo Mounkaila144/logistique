@@ -46,7 +46,5 @@ COPY . /var/www
 
 WORKDIR /var/www
 
-# Installer les dépendances du projet
-RUN composer install
 
 EXPOSE 5173
