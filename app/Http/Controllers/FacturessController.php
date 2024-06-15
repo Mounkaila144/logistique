@@ -5,7 +5,7 @@ use App\Models\Article;
 use Exception;
 use Illuminate\Http\Request;
 
-class FacturesController extends Controller
+class FacturessController extends Controller
 {
 
     public function download(Request $request, $id)

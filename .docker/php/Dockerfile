@@ -1,4 +1,4 @@
-FROM php:8.3-fpm
+FROM php:8.1-fpm
 
 # Copier les fichiers de configuration dans l'image
 COPY .docker/php/php.ini /usr/local/etc/php/
