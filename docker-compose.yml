@@ -4,7 +4,6 @@ services:
             context: .
             dockerfile: Dockerfile
         image: laravel_app
-        container_name: laravel_app
         restart: unless-stopped
         working_dir: /var/www
         volumes:
@@ -15,7 +14,6 @@ services:
 
     webserver:
         image: nginx:alpine
-        container_name: nginx
         restart: unless-stopped
         ports:
             - "81:80"
@@ -29,7 +27,6 @@ services:
 
     db:
         image: mariadb:latest
-        container_name: mariadb
         restart: unless-stopped
         environment:
             MYSQL_ROOT_PASSWORD: root
